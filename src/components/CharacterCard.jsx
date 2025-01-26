@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
-import "../styles/styles.css";
+import "../styles/components/CharacterCard.css";
 
 const CharacterCard = ({ character }) => {
+  const rarityClass = character.stars === 5 ? "rarity-5" : "rarity-4";
+
   return (
-    <div className="card">
-      <div className="card-header">
+    <div className={`card ${rarityClass}`}>
+      <div className="card-content">
         <img
           className="card-image"
           src={character.image}
@@ -13,11 +15,8 @@ const CharacterCard = ({ character }) => {
       </div>
       <div className="card-body">
         <h3 className="card-title">{character.name}</h3>
-        <p className="card-description">{character.description}</p>
-        <div className="combat-type">
-          <span className="combat-type-title">Type de combat :</span>
-          <span className="combat-type-name">{character.combatType.name}</span>
-        </div>
+      </div>
+      <div className="card-combat-type">
         {character.combatType.icon && (
           <img
             className="combat-type-icon"

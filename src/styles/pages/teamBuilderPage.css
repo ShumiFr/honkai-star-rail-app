@@ -1,0 +1,99 @@
+.team-builder-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.roles {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 100px;
+  margin-top: 100px;
+}
+
+.role-slot {
+  width: 20%;
+  max-width: 300px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  border: 2px solid #33343a;
+}
+
+.dps-principal {
+  background-image: linear-gradient(
+      rgba(237, 52, 62, 0.1) 0.1%,
+      rgba(255, 61, 61, 0) 60%
+    ),
+    none;
+}
+
+.dps-secondaire {
+  background-image: linear-gradient(
+      rgba(194, 103, 236, 0.1) 0.1%,
+      rgba(255, 61, 61, 0) 60%
+    ),
+    none;
+}
+
+.soutien {
+  background-image: linear-gradient(
+      rgba(52, 237, 77, 0.1) 0.1%,
+      rgba(255, 61, 61, 0) 60%
+    ),
+    none;
+}
+
+.support {
+  background-attachment: scroll, scroll;
+  background-clip: border-box, border-box;
+  background-color: rgb(44, 45, 51);
+  background-image: linear-gradient(
+      rgba(0, 158, 236, 0.1) 0.1%,
+      rgba(255, 61, 61, 0) 60%
+    ),
+    none;
+}
+
+.role-slot h4 {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+  color: #fff;
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+}
+
+.role-slot .character-icon-container {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #36373d;
+}
+
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+  width: 90%;
+}
+
+.character-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  cursor: pointer;
+}

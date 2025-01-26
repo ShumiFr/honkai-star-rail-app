@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #212529;
+  border-bottom: 1px solid #2e3133;
+}
+
+.header-link {
+  color: #fff;
+}
+
+.header-link:hover {
+  text-decoration: underline;
+}

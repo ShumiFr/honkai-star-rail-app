@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { fetchCharacters } from "../services/api";
 import CharacterCard from "../components/CharacterCard";
-import "../styles/pages/CharactersPage.css";
+import "../styles/pages/charactersPage.css";
 
 const CharactersPage = () => {
   const [characters, setCharacters] = useState([]);

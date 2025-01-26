@@ -39,11 +39,58 @@ const TeamBuilderPage = () => {
     support: null,
     sustain: null,
   });
+  const [filter, setFilter] = useState("All");
+  const [uid, setUid] = useState("");
+
+  useEffect(() => {
+    const savedUid = localStorage.getItem("userUID");
+    if (savedUid) {
+      setUid(savedUid);
+      loadCharacters();
+      loadUserTeam(savedUid);
+    }
+  }, []);
 
   const loadCharacters = async () => {
     const result = await fetchCharacters();
     if (result?.success) {
       setCharacters(result.data);
+    }
+  };
+
+  const loadUserTeam = async (uid) => {
+    try {
+      const response = await fetch("http://localhost:5000/api/getTeam", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ uid }),
+      });
+      const result = await response.json();
+      if (result?.success && result.team) {
+        setTeam(result.team);
+      }
+    } catch (error) {
+      console.error("Erreur lors de la récupération de l'équipe :", error);
+    }
+  };
+
+  const saveTeam = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/saveTeam", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ uid, team }),
+      });
+      const result = await response.json();
+      if (result?.success) {
+        alert("Équipe enregistrée avec succès !");
+      }
+    } catch (error) {
+      console.error("Erreur lors de l'enregistrement de l'équipe :", error);
     }
   };
 
@@ -79,10 +126,6 @@ const TeamBuilderPage = () => {
     return role.toLowerCase().replace(" ", "-");
   };
 
-  useEffect(() => {
-    loadCharacters();
-  }, []);
-
   const availableCharacters = characters
     .filter(
       (char) =>
@@ -93,8 +136,37 @@ const TeamBuilderPage = () => {
     )
     .sort((a, b) => a.name.localeCompare(b.name));
 
+  const filteredCharacters = availableCharacters.filter((char) => {
+    const role = getRole(char);
+    if (filter === "All") return true;
+    if (filter === "DPS Principal" && role === "DPS Principal") return true;
+    if (filter === "DPS Secondaire" && role === "DPS Secondaire") return true;
+    if (filter === "Soutien" && role === "Soutien") return true;
+    if (filter === "Support" && role === "Support") return true;
+    return false;
+  });
+
+  const dpsPrincipalCharacters = filteredCharacters.filter(
+    (char) => getRole(char) === "DPS Principal"
+  );
+
+  const dpsSecondaireCharacters = filteredCharacters.filter(
+    (char) => getRole(char) === "DPS Secondaire"
+  );
+
   return (
     <div className="team-builder-page">
+      <div className="filter-buttons">
+        <button onClick={() => setFilter("All")}>All</button>
+        <button onClick={() => setFilter("DPS Principal")}>
+          DPS Principal
+        </button>
+        <button onClick={() => setFilter("DPS Secondaire")}>
+          DPS Secondaire
+        </button>
+        <button onClick={() => setFilter("Soutien")}>Soutien</button>
+        <button onClick={() => setFilter("Support")}>Support</button>
+      </div>
       <div className="roles">
         <div
           className={`role-slot ${
@@ -159,15 +231,67 @@ const TeamBuilderPage = () => {
           )}
         </div>
       </div>
-      <div className="characters-grid">
-        {availableCharacters.map((char) => (
-          <CharacterIcon
-            key={char.id}
-            character={char}
-            onClick={() => handleCharacterClick(char)}
-          />
-        ))}
-      </div>
+      <button onClick={saveTeam}>Enregistrer l&apos;équipe</button>
+      {filter === "DPS Principal" || filter === "All" ? (
+        <div className="dps-principal-characters">
+          <h3>DPS Principal</h3>
+          <div className="characters-grid">
+            {dpsPrincipalCharacters.map((char) => (
+              <CharacterIcon
+                key={char.id}
+                character={char}
+                onClick={() => handleCharacterClick(char)}
+              />
+            ))}
+          </div>
+        </div>
+      ) : null}
+      {filter === "DPS Secondaire" || filter === "All" ? (
+        <div className="dps-secondaire-characters">
+          <h3>DPS Secondaire</h3>
+          <div className="characters-grid">
+            {dpsSecondaireCharacters.map((char) => (
+              <CharacterIcon
+                key={char.id}
+                character={char}
+                onClick={() => handleCharacterClick(char)}
+              />
+            ))}
+          </div>
+        </div>
+      ) : null}
+      {filter === "Soutien" || filter === "All" ? (
+        <div className="soutien-characters">
+          <h3>Soutien</h3>
+          <div className="characters-grid">
+            {filteredCharacters
+              .filter((char) => getRole(char) === "Soutien")
+              .map((char) => (
+                <CharacterIcon
+                  key={char.id}
+                  character={char}
+                  onClick={() => handleCharacterClick(char)}
+                />
+              ))}
+          </div>
+        </div>
+      ) : null}
+      {filter === "Support" || filter === "All" ? (
+        <div className="support-characters">
+          <h3>Support</h3>
+          <div className="characters-grid">
+            {filteredCharacters
+              .filter((char) => getRole(char) === "Support")
+              .map((char) => (
+                <CharacterIcon
+                  key={char.id}
+                  character={char}
+                  onClick={() => handleCharacterClick(char)}
+                />
+              ))}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };

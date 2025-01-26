@@ -12,11 +12,8 @@ const Header = () => {
       <a className="header-link" href="/team-builder">
         Créateur d&apos;équipe
       </a>
-      <a className="header-link" href="/light-cones">
-        Cônes de lumière
-      </a>
-      <a className="header-link" href="/relics">
-        Reliques
+      <a className="header-link" href="/teams">
+        Équipes
       </a>
     </header>
   );

@@ -23,14 +23,14 @@
 
 .characters-page h2 {
   color: #fff;
-  font-size: 2rem;
-  margin: 60px;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 .card-container {
   display: grid;
-  grid-gap: 10px 5px;
-  grid-template-columns: repeat(auto-fill, 140px);
+  grid-gap: 10px 10px;
+  grid-template-columns: repeat(auto-fill, 145px);
   justify-content: space-between;
   margin-top: 15px;
   width: 100%;
@@ -38,4 +38,66 @@
 
 .not-found-image {
   margin-top: 10px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.element-filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.element-choice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 0;
+  border: #23242a 1px solid;
+  background: rgb(51, 51, 51);
+}
+
+.element-choice:hover {
+  cursor: pointer;
+}
+
+.all img {
+  filter: brightness(10);
+}
+
+.role-choice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 0;
+  border: #23242a 1px solid;
+  background: rgb(51, 51, 51);
+}
+
+.role-filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.role-choice:hover {
+  cursor: pointer;
+}
+
+.svg-inline--fa {
+  font-size: 20px;
+}
+
+.active {
+  background: #0056b3;
 }

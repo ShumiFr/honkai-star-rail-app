@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../styles/pages/homePage.css";
+import logo from "../assets/wallpaper.jpg"; // Assurez-vous d'avoir un logo dans le dossier assets
 
 const HomePage = () => {
   const [uid, setUid] = useState("");
@@ -52,7 +54,8 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <div className="welcome-container">
-        <h1>Bienvenue !</h1>
+        <img src={logo} alt="Logo" className="logo" />
+        <h1>Bienvenue sur Honkai Star Rail Team Builder !</h1>
         {userName ? (
           <h2>Utilisateur : {userName}</h2>
         ) : (
@@ -76,6 +79,17 @@ const HomePage = () => {
           Cette application sert principalement à créer et enregistrer ses
           équipes pour le jeu.
         </p>
+        <div className="navigation-buttons">
+          <Link to="/characters" className="nav-button">
+            Personnages
+          </Link>
+          <Link to="/team-builder" className="nav-button">
+            Créateur d&apos;équipe
+          </Link>
+          <Link to="/teams" className="nav-button">
+            Équipes
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -2,28 +2,74 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f0f0f0;
+  height: 90vh;
+  background-color: #252525;
+  background-image: url("../assets/background.jpg"); /* Assurez-vous d'avoir une image de fond dans le dossier assets */
+  background-size: cover;
+  background-position: center;
 }
 
 .welcome-container {
+  background-color: #252525;
+  padding: 10px;
   text-align: center;
-  background-color: #fff;
-  padding: 40px;
+  color: white;
+}
+
+.welcome-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.welcome-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #eecf21;
+}
+
+.welcome-container p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 100%;
+  margin-bottom: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .uid-input {
-  margin-top: 20px;
+  margin: 20px 0;
 }
 
 .uid-input label {
-  margin-right: 10px;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .uid-input input {
-  padding: 5px;
+  padding: 10px;
+  width: 100%;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.navigation-buttons {
+  margin-top: 20px;
+}
+
+.nav-button {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #0056b3;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: #004494;
 }

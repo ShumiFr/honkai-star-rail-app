@@ -1,14 +1,55 @@
 .header {
+  position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: #212529;
-  border-bottom: 1px solid #2e3133;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+}
+
+.menu-button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.side-menu {
+  position: fixed;
+  top: -30px;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.side-menu.open {
+  left: 0;
+}
+
+.close-button {
+  align-self: flex-end;
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .header-link {
   color: #fff;
+  text-decoration: none;
+  margin: 10px 0;
+  font-size: 1.2rem;
 }
 
 .header-link:hover {

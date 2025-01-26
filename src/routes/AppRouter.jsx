@@ -1,20 +1,23 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "../pages/HomePage";
-import CharactersPage from "../pages/CharactersPage";
-import TeamBuilderPage from "../pages/TeamBuilderPage";
-import TeamsPage from "../pages/TeamsPage";
+import { Route, Switch } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import CharactersPage from "./pages/CharactersPage";
+import TeamBuilderPage from "./pages/TeamBuilderPage";
+import TeamsPage from "./pages/TeamsPage";
+import Header from "./components/Header";
+import "./App.css";
 
-const AppRouter = () => {
+const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/characters" element={<CharactersPage />} />
-        <Route path="/team-builder" element={<TeamBuilderPage />} />
-        <Route path="/teams" element={<TeamsPage />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="app">
+      <Header />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/characters" component={CharactersPage} />
+        <Route path="/team-builder" component={TeamBuilderPage} />
+        <Route path="/teams" component={TeamsPage} />
+      </Switch>
+    </div>
   );
 };
 
-export default AppRouter;
+export default App;

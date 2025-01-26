@@ -186,17 +186,6 @@ const TeamBuilderPage = () => {
 
   return (
     <div className="team-builder-page">
-      <div className="filter-buttons">
-        <button onClick={() => setFilter("All")}>All</button>
-        <button onClick={() => setFilter("DPS Principal")}>
-          DPS Principal
-        </button>
-        <button onClick={() => setFilter("DPS Secondaire")}>
-          DPS Secondaire
-        </button>
-        <button onClick={() => setFilter("Soutien")}>Soutien</button>
-        <button onClick={() => setFilter("Support")}>Support</button>
-      </div>
       <div className="roles">
         <div
           className={`role-slot ${
@@ -261,6 +250,17 @@ const TeamBuilderPage = () => {
           )}
         </div>
       </div>
+      <div className="filter-buttons">
+        <button onClick={() => setFilter("All")}>All</button>
+        <button onClick={() => setFilter("DPS Principal")}>
+          DPS Principal
+        </button>
+        <button onClick={() => setFilter("DPS Secondaire")}>
+          DPS Secondaire
+        </button>
+        <button onClick={() => setFilter("Soutien")}>Soutien</button>
+        <button onClick={() => setFilter("Support")}>Support</button>
+      </div>
       <div className="team-name-input">
         <input
           type="text"
@@ -269,7 +269,9 @@ const TeamBuilderPage = () => {
           onChange={(e) => setTeamName(e.target.value)}
         />
       </div>
-      <button onClick={saveTeam}>Enregistrer l&apos;équipe</button>
+      <button className="save-team-button" onClick={saveTeam}>
+        Enregistrer l&apos;équipe
+      </button>
       {filter === "DPS Principal" || filter === "All" ? (
         <div className="dps-principal-characters">
           <h3>DPS Principal</h3>

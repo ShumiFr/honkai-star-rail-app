@@ -1,6 +1,20 @@
 import { useState, useEffect } from "react";
 import CharacterIcon from "../components/CharacterIcon";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHandFist,
+  faVirus,
+  faFlask,
+  faMedkit,
+} from "@fortawesome/free-solid-svg-icons";
 import "../styles/pages/teamsPage.css";
+
+const roleIcons = {
+  mainDps: faHandFist,
+  secondDps: faVirus,
+  support: faFlask,
+  sustain: faMedkit,
+};
 
 const TeamsPage = () => {
   const [teams, setTeams] = useState([]);
@@ -68,7 +82,7 @@ const TeamsPage = () => {
               <div className="team-characters">
                 {Object.keys(team.team[0]).map((role) => (
                   <div key={role} className="team-character">
-                    <h4>{role}</h4>
+                    <FontAwesomeIcon icon={roleIcons[role]} size="2x" />
                     {team.team[0][role] && team.team[0][role].name ? (
                       <CharacterIcon character={team.team[0][role]} />
                     ) : (

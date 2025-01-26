@@ -3,31 +3,38 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
   width: 100%;
 }
 
 .teams-page h2 {
   color: #fff;
-  font-size: 2rem;
-  margin: 60px;
+  font-size: 1.5rem;
+  margin: 20px;
+  text-align: center;
 }
 
 .team {
   display: flex;
   flex-direction: column;
   background: #423f3f;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
 }
 
 .team h3 {
   color: #fff;
-  font-size: 1.5rem;
-  margin: 20px;
+  font-size: 1.2rem;
+  margin: 10px;
+  color: #eecf21;
+  text-align: center;
 }
 
 .team button {
   padding: 10px 20px;
-  margin: 20px;
+  margin: 20px 0;
   background: #fff;
   color: #000;
   border: none;
@@ -47,7 +54,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 10px;
 }
 
 .team-character p,
@@ -55,4 +61,50 @@
   color: #fff;
   width: 100%;
   text-align: center;
+}
+
+.team-character svg {
+  margin-bottom: 10px;
+}
+
+.fa-hand-fist {
+  color: red;
+}
+
+.fa-virus {
+  color: darkviolet;
+}
+
+.fa-flask {
+  color: yellow;
+}
+
+.fa-suitcase-medical {
+  color: green;
+}
+
+@media (max-width: 768px) {
+  .team-characters {
+    justify-content: center;
+  }
+
+  .team-character {
+    margin: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-characters {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .team-character {
+    margin: 2px;
+  }
+
+  .team-character p,
+  .team-character h4 {
+    font-size: 0.8rem;
+  }
 }

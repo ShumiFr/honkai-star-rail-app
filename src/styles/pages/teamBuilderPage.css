@@ -103,8 +103,42 @@
   cursor: pointer;
 }
 
+.character-icon {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgb(44, 45, 51);
+}
+
+.rarity-5 {
+  background: linear-gradient(rgb(136, 85, 80), rgb(201, 163, 106) 53%);
+}
+
+.rarity-4 {
+  background: linear-gradient(180deg, #343659, #8a5fcc 53%);
+}
+
+.character-icon-overlay {
+  position: absolute;
+  width: 40%;
+  top: 0px;
+  left: 0px;
+}
+
+.character-combat-type-icon {
+  width: 100%;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 1));
+}
+
+.character-icon p {
+  padding: 5px;
+  text-align: center;
+}
+
 .filter-buttons {
-  display: none;
+  display: flex;
   justify-content: center;
   margin: 50px 0 20px 0;
 }
@@ -137,13 +171,23 @@
   border-bottom: 1px solid #33343a;
 }
 
+.team-name-input {
+  margin: 20px 0;
+}
+
+.team-name-input input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+}
+
 @media (max-width: 768px) {
   .roles {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 15px;
     margin-top: 50px;
-    margin-bottom: 0px;
-    padding-bottom: 0px;
   }
 
   .role-slot {

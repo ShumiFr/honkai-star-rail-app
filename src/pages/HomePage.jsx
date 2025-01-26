@@ -24,13 +24,16 @@ const HomePage = () => {
 
   const fetchUser = async (uid) => {
     try {
-      const response = await fetch("http://localhost:5000/api/fetchUser", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ uid }),
-      });
+      const response = await fetch(
+        "https://honkai-star-rail-backend.onrender.com/api/fetchUser",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ uid }),
+        }
+      );
       const data = await response.json();
       if (data && data.nickname) {
         setUserName(data.nickname);

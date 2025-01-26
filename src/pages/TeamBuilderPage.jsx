@@ -41,13 +41,15 @@ const TeamBuilderPage = () => {
   });
   const [filter, setFilter] = useState("All");
   const [uid, setUid] = useState("");
+  const [teamName, setTeamName] = useState("");
+  const [nickname, setNickname] = useState("");
 
   useEffect(() => {
     const savedUid = localStorage.getItem("userUID");
     if (savedUid) {
       setUid(savedUid);
       loadCharacters();
-      loadUserTeam(savedUid);
+      fetchUser(savedUid);
     }
   }, []);
 
@@ -58,36 +60,60 @@ const TeamBuilderPage = () => {
     }
   };
 
-  const loadUserTeam = async (uid) => {
+  const fetchUser = async (uid) => {
     try {
-      const response = await fetch("http://localhost:5000/api/getTeam", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ uid }),
-      });
-      const result = await response.json();
-      if (result?.success && result.team) {
-        setTeam(result.team);
+      const response = await fetch(
+        "https://honkai-star-rail-backend.onrender.com/api/fetchUser",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ uid }),
+        }
+      );
+      const data = await response.json();
+      if (data && data.nickname) {
+        setNickname(data.nickname);
+      } else {
+        setNickname("");
       }
     } catch (error) {
-      console.error("Erreur lors de la récupération de l'équipe :", error);
+      console.error(
+        "Erreur lors de la récupération des données utilisateur :",
+        error
+      );
+      setNickname("");
     }
   };
 
   const saveTeam = async () => {
+    if (!teamName) {
+      alert("Le nom de l'équipe est obligatoire");
+      return;
+    }
+
     try {
-      const response = await fetch("http://localhost:5000/api/saveTeam", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ uid, team }),
-      });
+      const response = await fetch(
+        "https://honkai-star-rail-backend.onrender.com/api/saveTeam",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ uid, name: teamName, team }),
+        }
+      );
       const result = await response.json();
       if (result?.success) {
         alert("Équipe enregistrée avec succès !");
+        setTeamName("");
+        setTeam({
+          mainDps: null,
+          secondDps: null,
+          support: null,
+          sustain: null,
+        });
       }
     } catch (error) {
       console.error("Erreur lors de l'enregistrement de l'équipe :", error);
@@ -124,6 +150,10 @@ const TeamBuilderPage = () => {
 
   const getRoleClass = (role) => {
     return role.toLowerCase().replace(" ", "-");
+  };
+
+  const replaceNickname = (name) => {
+    return name.replace("{NICKNAME}", nickname);
   };
 
   const availableCharacters = characters
@@ -231,6 +261,14 @@ const TeamBuilderPage = () => {
           )}
         </div>
       </div>
+      <div className="team-name-input">
+        <input
+          type="text"
+          placeholder="Nom de l'équipe"
+          value={teamName}
+          onChange={(e) => setTeamName(e.target.value)}
+        />
+      </div>
       <button onClick={saveTeam}>Enregistrer l&apos;équipe</button>
       {filter === "DPS Principal" || filter === "All" ? (
         <div className="dps-principal-characters">
@@ -239,7 +277,7 @@ const TeamBuilderPage = () => {
             {dpsPrincipalCharacters.map((char) => (
               <CharacterIcon
                 key={char.id}
-                character={char}
+                character={{ ...char, name: replaceNickname(char.name) }}
                 onClick={() => handleCharacterClick(char)}
               />
             ))}
@@ -253,7 +291,7 @@ const TeamBuilderPage = () => {
             {dpsSecondaireCharacters.map((char) => (
               <CharacterIcon
                 key={char.id}
-                character={char}
+                character={{ ...char, name: replaceNickname(char.name) }}
                 onClick={() => handleCharacterClick(char)}
               />
             ))}
@@ -269,7 +307,7 @@ const TeamBuilderPage = () => {
               .map((char) => (
                 <CharacterIcon
                   key={char.id}
-                  character={char}
+                  character={{ ...char, name: replaceNickname(char.name) }}
                   onClick={() => handleCharacterClick(char)}
                 />
               ))}
@@ -285,7 +323,7 @@ const TeamBuilderPage = () => {
               .map((char) => (
                 <CharacterIcon
                   key={char.id}
-                  character={char}
+                  character={{ ...char, name: replaceNickname(char.name) }}
                   onClick={() => handleCharacterClick(char)}
                 />
               ))}

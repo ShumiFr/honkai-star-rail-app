@@ -1,8 +1,19 @@
 /* eslint-disable react/prop-types */
 import "../styles/components/CharacterCard.css";
+import notFoundImage from "../assets/not-found.png";
 
 const CharacterCard = ({ character }) => {
   const rarityClass = character.stars === 5 ? "rarity-5" : "rarity-4";
+
+  const handleImageError = (e) => {
+    e.target.src = notFoundImage;
+    e.target.className = "card-image not-found-image";
+  };
+
+  const handleIconError = (e) => {
+    e.target.src = notFoundImage;
+    e.target.className = "combat-type-icon not-found-icon";
+  };
 
   return (
     <div className={`card ${rarityClass}`}>
@@ -11,6 +22,7 @@ const CharacterCard = ({ character }) => {
           className="card-image"
           src={character.image}
           alt={`${character.name} - Image`}
+          onError={handleImageError}
         />
       </div>
       <div className="card-body">
@@ -22,6 +34,7 @@ const CharacterCard = ({ character }) => {
             className="combat-type-icon"
             src={character.combatType.icon}
             alt={`${character.combatType.name} Icon`}
+            onError={handleIconError}
           />
         )}
       </div>

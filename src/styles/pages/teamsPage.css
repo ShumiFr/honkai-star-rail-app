@@ -13,9 +13,33 @@
   margin: 60px;
 }
 
-.team-container {
+.team {
   display: flex;
+  flex-direction: column;
   background: #423f3f;
+}
+
+.team h3 {
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 20px;
+}
+
+.team button {
+  padding: 10px 20px;
+  margin: 20px;
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.team-characters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .team-character {

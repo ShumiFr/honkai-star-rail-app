@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "../styles/components/CharacterCard.css";
+import "../styles/components/characterCard.css";
 import notFoundImage from "../assets/not-found.png";
 
 const CharacterCard = ({ character }) => {

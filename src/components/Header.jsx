@@ -1,20 +1,21 @@
+import { Link } from "react-router-dom";
 import "../styles/components/header.css";
 
 const Header = () => {
   return (
     <header className="header">
-      <a className="header-link" href="/">
+      <Link className="header-link" to="/">
         Accueil
-      </a>
-      <a className="header-link" href="/characters">
+      </Link>
+      <Link className="header-link" to="/characters">
         Personnages
-      </a>
-      <a className="header-link" href="/team-builder">
+      </Link>
+      <Link className="header-link" to="/team-builder">
         Créateur d&apos;équipe
-      </a>
-      <a className="header-link" href="/teams">
+      </Link>
+      <Link className="header-link" to="/teams">
         Équipes
-      </a>
+      </Link>
     </header>
   );
 };

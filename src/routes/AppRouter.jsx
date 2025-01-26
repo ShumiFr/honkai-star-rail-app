@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import CharactersPage from "../pages/CharactersPage";
 import TeamBuilderPage from "../pages/TeamBuilderPage";
@@ -9,12 +9,12 @@ const AppRouter = () => {
   return (
     <div className="app">
       <Header />
-      <Switch>
+      <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/characters" element={<CharactersPage />} />
         <Route path="/team-builder" element={<TeamBuilderPage />} />
         <Route path="/teams" element={<TeamsPage />} />
-      </Switch>
+      </Routes>
     </div>
   );
 };
